@@ -3,3 +3,5 @@
 Here you will find a todo list that will fill all of your todo list needs.
 
 Built with PostgreSQL, Express, React, and Node.
+
+Credit is due to [this](https://www.youtube.com/watch?v=ldYcgPKEZC8) tutorial for the basics.
