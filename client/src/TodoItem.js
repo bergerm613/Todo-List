@@ -76,6 +76,7 @@ const TodoItem = ({ todo }) => {
         icon="ph:x-circle-thin"
         color="white"
         height="38"
+        style={{ cursor: "pointer" }}
         onClick={() => deleteMutation.mutate()}
       />
     </ItemContainer>

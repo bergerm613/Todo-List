@@ -23,6 +23,7 @@ const AddItemButton = styled.button`
   font-family: "Montserrat", sans-serif;
   padding: 18px 28px;
   align-self: center;
+  margin-top: 18px;
 `;
 
 const TodoList = () => {
