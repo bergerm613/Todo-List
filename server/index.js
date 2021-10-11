@@ -7,6 +7,8 @@ const pool = require("./db");
 app.use(cors());
 app.use(express.json());
 
+// credit to https://www.youtube.com/watch?v=ldYcgPKEZC8 for basic api structure
+
 //ROUTES//
 
 //create a todo
@@ -29,7 +31,7 @@ app.get("/todos", async (req, res) => {
     const allTodos = await pool.query("SELECT * FROM todo");
     res.json(allTodos.rows);
   } catch (err) {
-    console.error(error.message);
+    console.error(err.message);
   }
 });
 

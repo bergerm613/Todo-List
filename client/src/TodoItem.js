@@ -16,12 +16,12 @@ const ItemInput = styled.input`
   border: none;
   color: white;
   padding: 18px 28px;
+  width: 75%;
 
   :focus-visible {
     outline: none;
     border-radius: 62px;
     background: #bcbcbc;
-    width: 75%;
   }
 `;
 
