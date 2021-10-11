@@ -1,11 +1,14 @@
 import { Modal, Button } from "react-bootstrap";
 import { useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 
 const NewItemModal = ({ handleClose }) => {
   const [description, setDescription] = useState("");
 
-  const addNewItem = async () => {
-    try {
+  const queryClient = useQueryClient();
+
+  const addItemMutation = useMutation(
+    async () => {
       const body = { description };
       const newItem = await fetch("http://localhost:5000/todos", {
         method: "POST",
@@ -14,10 +17,29 @@ const NewItemModal = ({ handleClose }) => {
       }).then((response) => response.json());
 
       handleClose();
-    } catch (error) {
-      console.error(error.message);
+      return newItem;
+    },
+    {
+      onSuccess: (newItem) => {
+        queryClient.setQueryData("todos", (todos) => todos.push(newItem));
+      },
     }
-  };
+  );
+
+  //   const addNewItem = async () => {
+  //     try {
+  //       const body = { description };
+  //       const newItem = await fetch("http://localhost:5000/todos", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify(body),
+  //       }).then((response) => response.json());
+
+  //       handleClose();
+  //     } catch (error) {
+  //       console.error(error.message);
+  //     }
+  //   };
 
   return (
     <Modal show={true} onHide={handleClose} centered>
@@ -34,7 +56,7 @@ const NewItemModal = ({ handleClose }) => {
         <Button
           variant="primary"
           style={{ backgroundColor: "#d76261", border: "none" }}
-          onClick={() => addNewItem()}
+          onClick={() => addItemMutation.mutate()}
         >
           add
         </Button>
